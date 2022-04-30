@@ -19,10 +19,14 @@ export function deleteQuestion(id) {
   });
 }
 
-export function updateQuestion(id, question) {
-  return fetch(`http://localhost:4000/questions/${id}`, {
+export function updateQuestion(question) {
+  const updatedQuestion = { ...question };
+  delete updatedQuestion.id;
+  console.log('patch', updatedQuestion);
+
+  return fetch(`http://localhost:4000/questions/${question.id}`, {
     method: "PATCH",
-    body: JSON.stringify(question),
+    body: JSON.stringify(updatedQuestion),
     headers: {
       "Content-Type": "application/json",
     },
