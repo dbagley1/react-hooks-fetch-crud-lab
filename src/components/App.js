@@ -2,21 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import AdminNavBar from "./AdminNavBar";
 import QuestionForm from "./QuestionForm";
 import QuestionList from "./QuestionList";
-import { getQuestions, deleteQuestion, postQuestion } from "./questionAPI.js";
+import { getQuestions, deleteQuestion, postQuestion, updateQuestion } from "./questionAPI.js";
 
 function App() {
   const [page, setPage] = useState("List");
   const [questionList, setQuestionList] = useState([]);
-
-  const handleDeleteQuestion = useCallback(
-    (id) => {
-      deleteQuestion(id).then((response) => {
-        console.log(response);
-        setQuestionList(questionList.filter((question) => question.id !== id));
-      });
-    },
-    [questionList]
-  );
 
   const updateQuestionList = useCallback(() => {
     getQuestions().then((questions) => {
@@ -25,12 +15,35 @@ function App() {
     });
   }, []);
 
-  function handleAddQuestion(question) {
-    postQuestion(question).then((newQuestion) => {
-      console.log(newQuestion);
-      updateQuestionList();
-    });
-  }
+  const handleUpdateQuestion = useCallback(
+    (question) => {
+      updateQuestion(question).then((response) => {
+        console.log(response);
+        updateQuestionList();
+      });
+    },
+    [updateQuestionList]
+  );
+
+  const handleAddQuestion = useCallback(
+    (question) => {
+      postQuestion(question).then((newQuestion) => {
+        console.log(newQuestion);
+        updateQuestionList();
+      });
+    },
+    [updateQuestionList]
+  );
+
+  const handleDeleteQuestion = useCallback(
+    (id) => {
+      deleteQuestion(id).then((response) => {
+        console.log(response);
+        updateQuestionList();
+      });
+    },
+    [updateQuestionList]
+  );
 
   useEffect(() => {
     updateQuestionList();

@@ -65,6 +65,39 @@
         "controlled"
       ],
       "correctIndex": 1
+    },
+    {
+      "prompt": "Example Question",
+      "correctIndex": 0,
+      "answers": [
+        "Answer 1",
+        "Answer 2",
+        "Answer 3",
+        "Answer 4"
+      ],
+      "id": 7
+    },
+    {
+      "prompt": "Example Question",
+      "correctIndex": "2",
+      "answers": [
+        "Answer 1",
+        "Answer 2",
+        "Answer 3",
+        "Answer 4"
+      ],
+      "id": 8
+    },
+    {
+      "prompt": "Example Question",
+      "correctIndex": "3",
+      "answers": [
+        "Answer 1",
+        "Answer 2",
+        "Answer 3",
+        "Answer 4"
+      ],
+      "id": 9
     }
   ]
 }
